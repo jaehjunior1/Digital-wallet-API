@@ -1,5 +1,7 @@
 package com.example.digital_wallet_api.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,12 +30,12 @@ public class Wallet {
     private String email;
 
     @PositiveOrZero(message = "Balance cannot be negative")
-    private double balance;
+    private BigDecimal balance;
 
     public Wallet() {
     }
 
-    public Wallet(String accountName, String accountNumber, String email, double balance) {
+    public Wallet(String accountName, String accountNumber, String email, BigDecimal balance) {
         this.accountName = accountName;
         this.accountNumber = accountNumber;
         this.email = email;
@@ -72,11 +74,11 @@ public class Wallet {
         this.email = email;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 }

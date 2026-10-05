@@ -37,4 +37,28 @@ public class WalletService {
                         )
                 );
     }
+
+    public Wallet updateWallet(Long id, Wallet walletDetails) {
+
+        Wallet wallet = walletRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Wallet with ID " + id + " not found"));
+
+        wallet.setAccountName(walletDetails.getAccountName());
+        wallet.setAccountNumber(walletDetails.getAccountNumber());
+        wallet.setEmail(walletDetails.getEmail());
+        wallet.setBalance(walletDetails.getBalance());
+        
+
+        return walletRepository.save(wallet);
+    }
+
+    public void deleteWallet(Long id) {
+
+        Wallet wallet = walletRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Wallet with ID " + id + " not found"));
+
+        walletRepository.delete(wallet);
+    }
 }
